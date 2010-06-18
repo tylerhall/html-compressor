@@ -37,6 +37,11 @@ WORDPRESS USAGE
 
 Place `wp-html-compressor.php` and `html-compressor.php` into your WordPress plugins folder and then activate in your WordPress admin panel. It's worth noting that this plugin _is_ compatible with [WP Super Cache](http://ocaoimh.ie/wp-super-cache/).
 
+DEMO
+-------
+
+To see a live demo of the HTML compressor visit [my website](http://clickontyler.com) and view the page source. All pages are being run through the WordPress plugin using the default options.
+
 UPDATES
 -------
 
