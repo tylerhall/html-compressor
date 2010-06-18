@@ -89,9 +89,6 @@
 				{
 					// Since we're not inside a <pre> block, we can trim both ends of the line
 					$line = trim($line);
-
-					// Remove trailing whitespace inside closing tags. Ex: </br > => </br>
-					$line = preg_replace('/(<\/[a-zA-Z]+)\s+>/', '$1>', $line);
 				}
 				else
 				{
