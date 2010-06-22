@@ -1,7 +1,7 @@
 HTML Compressor
 =========
 
-Attemps to reduce the filesize of an HTML document by removing unnecessary whitespace at the beginning and end of lines, inside closing tags, and stripping blank lines completely. `<pre>` tags are respected and their contents are left alone. Warning, nested `<pre>` tags may exhibit unexpected behaviour.
+Attemps to reduce the filesize of an HTML document by removing unnecessary whitespace at the beginning and end of lines, condensing multiple spaces into one, and stripping blank lines completely. `<pre>` tags are respected and their contents are left alone. Warning, nested `<pre>` tags may exhibit unexpected behavior.
 
 FEATURES
 --------
@@ -16,11 +16,12 @@ Place `html-compressor.php` somewhere in your path, rename to `htmlcompressor`, 
 
     Usage: htmlcompressor [OPTION]... [FILE]
 
-    -o, --overwrite  overwrite input file with compressed version
-    -s, --stats      output filesize savings calculation
-    -x, --extra      perform extra (possibly unsafe) compression operations
-        --help       display this help and exit
-    -v, --version    print version information and exit
+    -c, --no-comments  removes HTML comments
+    -o, --overwrite    overwrite input file with compressed version
+    -s, --stats        output filesize savings calculation
+    -x, --extra        perform extra (possibly unsafe) compression operations
+        --help         display this help and exit
+    -v, --version      print version information and exit
 
     Examples:
         htmlcompressor index.html > index-minified.html

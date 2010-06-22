@@ -30,8 +30,8 @@
 
 	if(defined('STDIN'))
 	{
-		$shortops = 'sxvo';
-		$longopts = array('stats', 'extra', 'help', 'version', 'overwrite');
+		$shortops = 'sxvoc';
+		$longopts = array('stats', 'extra', 'help', 'version', 'overwrite', 'no-comments');
 		$options = getopt($shortops, $longopts);
 
 		if(array_key_exists('help', $options))
@@ -39,11 +39,12 @@
 			echo "Usage: " . $GLOBALS['argv'][0] . " [OPTION]... [FILE]\n";
 			echo "Reduce the filesize of an HTML document by removing unnecessary whitespace.\n";
 			echo "\n";
-			echo "-o, --overwrite  overwrite input file with compressed version\n";
-			echo "-s, --stats      output filesize savings calculation\n";
-			echo "-x, --extra      perform extra (possibly unsafe) compression operations\n";
-			echo "    --help       display this help and exit\n";
-			echo "-v, --version    print version information and exit\n";
+			echo "-c, --no-comments  removes HTML comments\n";
+			echo "-o, --overwrite    overwrite input file with compressed version\n";
+			echo "-s, --stats        output filesize savings calculation\n";
+			echo "-x, --extra        perform extra (possibly unsafe) compression operations\n";
+			echo "    --help         display this help and exit\n";
+			echo "-v, --version      print version information and exit\n";
 			echo "\n";
 			echo "Report bugs to <tylerhall@gmail.com>.\n";
 			exit;
@@ -89,6 +90,9 @@
 				{
 					// Since we're not inside a <pre> block, we can trim both ends of the line
 					$line = trim($line);
+					
+					// And condense multiple spaces down to one
+					$line = preg_replace('/\s\s+/', ' ', $line);
 				}
 				else
 				{
@@ -119,6 +123,13 @@
 			{
 				$out .= $line . "\n";
 			}
+		}
+		
+		// Remove HTML comments...
+		if(array_key_exists('c', $options) || array_key_exists('no-comments', $options))
+		{
+			$out = preg_replace('/(<!--.*?-->)/ms', '', $out);
+			$out = str_replace('<!>', '', $out);
 		}
 
 		// Perform any extra (unsafe) compression techniques...
