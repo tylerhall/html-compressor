@@ -76,6 +76,7 @@
 			$options = array();
 		}
 
+		$data 			.= "\n";
 		$out        = '';
 		$inside_pre = false;
 		$bytecount  = 0;
